@@ -1,0 +1,15 @@
+{
+    "version": 1.00,
+    "data": {
+        "DEBUG": false,
+        "AUTO_NOSTRUM": false,
+        "AUTO_NOSTRUM_ONLY_DG": false,
+        "AUTO_HP_50_POT": true,
+        "AUTO_HP_50_POT_PERCENT": 20,
+        "AUTO_HP_POT": true,
+        "AUTO_HP_POT_PERCENT": 40,
+        "AUTO_MP_POT": true,
+        "AUTO_MP_POT_PERCENT": 50,
+        "BUFFS": true
+    }
+}
