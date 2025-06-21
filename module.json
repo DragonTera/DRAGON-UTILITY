@@ -3,7 +3,7 @@
     "name": "DRAGON-UTILITY",
     "author": "Dragon",
     "description": "==",
-    "version": "1.00",
+    "version": "1.01",
     "servers": ["https://raw.githubusercontent.com/DragonTera/DRAGON-UTILITY/MASTER/"],
     "options": {
         "niceName": "<font color=#04ACEC>DRAGON-UTILITY</font>",
