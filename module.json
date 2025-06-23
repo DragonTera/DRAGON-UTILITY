@@ -3,7 +3,7 @@
     "name": "DRAGON-UTILITY",
     "author": "Dragon",
     "description": "This mode allows you to be afk without disconnecting, use censored words, removes the drunk effect, screen shakes and automatically skips cutscenes. Automatically uses brooch, root beer, pet, club nostrum, HP and MP potion.",
-    "version": "2.02",
+    "version": "2.03",
     "servers": ["https://raw.githubusercontent.com/DragonTera/DRAGON-UTILITY/MASTER/"],
     "options": {
         "niceName": "<font color='#04ACEC'>DRAGON-UTILITY</font>",

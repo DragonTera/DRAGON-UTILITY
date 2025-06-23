@@ -69,7 +69,7 @@ module.exports = function utility(mod)
     //--------------------------------------------------------------------------------------------------------------------------------------
     //  functions
     //--------------------------------------------------------------------------------------------------------------------------------------
-
+    
     function _useNostrum()
     {
         for(let __buff of BUFF_INVINCIBILITY)
@@ -134,13 +134,26 @@ module.exports = function utility(mod)
         return;
     }
 
+    function _petIndex()
+    {
+        for(let __i = 0; __i < petList.servants.length; __i++)
+        {
+            if(petList.servants[__i].slot == (mod.settings.PET_SLOT - 1))
+            {
+                return __i;
+            }
+        }
+
+        return (mod.settings.PET_SLOT - 1);
+    }
+
     function _skillPet()
     {
         let __index     = 1000;
         let __taskPet   = null;
         let __retorno   = false;
-        
-        if(petId != null)
+
+        if(petId != null && mod.settings.AUTO_PET == true)
         {
             Object.values(mod.game.me.abnormalities).forEach(abnormality => 
             {
@@ -203,8 +216,8 @@ module.exports = function utility(mod)
     {
         mod.send("C_REQUEST_SPAWN_SERVANT", 2,
         {
-            servantId: petList.servants[mod.settings.PET_SLOT].id,
-            uniqueId: Number(petList.servants[mod.settings.PET_SLOT].dbid),
+            servantId: petList.servants[_petIndex()].id,
+            uniqueId: Number(petList.servants[_petIndex()].dbid),
             unk: 0
         });
 
@@ -255,7 +268,7 @@ module.exports = function utility(mod)
 
     mod.hook("S_VISIT_NEW_SECTION", 1, () => 
 	{
-		if(mod.settings.AUTO_PET == true)
+        if(mod.settings.AUTO_PET == true)
         {
             if(mod.settings.PET_SLOT <= petList.servants.length)
             {
@@ -264,13 +277,13 @@ module.exports = function utility(mod)
                     if(mod.game.me.inDungeon)
                     {
                         if(petId == null){_summonPet();}
-                        else if(petId != null && petId.dbid != petList.servants[mod.settings.PET_SLOT].dbid){_summonPet();}
+                        else if(petId != null && petId.dbid != petList.servants[_petIndex()].dbid){_summonPet();}
 
                     }
                     else if(petId != null){_removePet();}
                 }
                 else if(petId == null){_summonPet();}
-                else if(petId != null && petId.dbid != petList.servants[mod.settings.PET_SLOT].dbid){_summonPet();}
+                else if(petId != null && petId.dbid != petList.servants[_petIndex()].dbid){_summonPet();}
             }
         }
 	});
@@ -410,6 +423,8 @@ module.exports = function utility(mod)
         if(mod.settings.DEBUG){console.log(TAG + 'S_UPDATE_SERVANT_INFO: ' + event.id + ' | ' + event.energy);}
 
         if(event.energy <= 270 && mod.settings.AUTO_PET == true && petId != null){_useItens(PET_FOOD_ID[0]);}
+
+        return;
     });
 
     mod.hook('S_REQUEST_DESPAWN_SERVANT', 1, event => 
@@ -420,6 +435,8 @@ module.exports = function utility(mod)
             petSkill = null;
             petId    = null;
         }
+
+        return;
     });
 
     mod.hook('S_REQUEST_SPAWN_SERVANT', 4, event => 
@@ -428,11 +445,15 @@ module.exports = function utility(mod)
         {
             setTimeout(function (){petId = event}, 100);;
         }
+
+        return;
     });
 
     mod.hook('S_REQUEST_SERVANT_INFO_LIST', 4, event => 
     {
         petList = event;
+
+        return;
     });
 
     mod.hook('S_START_COOLTIME_SERVANT_SKILL', 1, event => 
@@ -441,6 +462,8 @@ module.exports = function utility(mod)
         
         petCd = true;
         setTimeout(function (){petCd = false;}, event.cooltime);
+
+        return;
     });
 
     //--------------------------------------------------------------------------------------------------------------------------------------
