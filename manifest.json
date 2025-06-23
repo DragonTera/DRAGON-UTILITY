@@ -1,9 +1,13 @@
 {
   "files": {
-    "index.js": "23777eaad8b4e8e6c9bc9f6edc342f082e9e5e029a27ba62b9a1ae27de02e34f",
-    "module.json": "83ba01b525bd2c9c3414d3003ef95732ba7fb5a218eff1bf1a9a357f88e4d5cb",
-    "README.md": "b8f6b25c90b85df09baac11e07817543ee14135a56d43ef186a534b9ad0d38ac",
-    "settings_migrator.js": "f60fe39680a97efde955750849d8a1611c8d0e1362afa4d1d9c34ecb953d5d00",
-    "settings_structure.js": "0c00613744d974f7ca803f3c66e8453097d3069e4edb469cbd6d4e66334d93e9"
+    "defs/C_REQUEST_SPAWN_SERVANT.2.def": "a6ed26594f77445719d0a69d8e218dd808b54297e1291b58e3a5dced2fcb1b61",
+    "defs/C_START_SERVANT_ACTIVE_SKILL.2.def": "74cf4aecb282600c5b11dd620d79728fa481ca5ddad58eb261d89135ca984b5b",
+    "defs/S_START_COOLTIME_SERVANT_SKILL.1.def": "9531917dceb13a00862d2b07e6ff03865b8ba8888cecbdc7c8a5a7707da931ed",
+    "defs/S_UPDATE_SERVANT_INFO.1.def": "355dac2b462cde6b2c00e6712ffdef4807013605d7b4e3d6b33fd12652f7ccd2",
+    "index.js": "5a3c5a5ad3db824a85d5b25fa1ffdf520bc629d166339a16bd73ca07675aeb8a",
+    "module.json": "f6bb99370b2d8201a226bb9a881aab392d81ddd3133aaeaa8992fb22570e5b0e",
+    "README.md": "d39700f08e3a17794d00b7e6d3663553cf89c1760a8d4cf4fa9219834cb3d1af",
+    "settings_migrator.js": "d36206ac104e01ac23004d42a6e92865de9d4ce875b44c793c417042f005c864",
+    "settings_structure.js": "bbf9695142e4c2306e318b1238b8c067b46b4928fa9a7e01c0394c1733e2c5ab"
   }
 }

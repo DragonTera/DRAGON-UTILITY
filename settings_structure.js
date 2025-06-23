@@ -1,5 +1,43 @@
 module.exports = [
     {
+        "key": "SHAKE_REMOVER",
+        "name": "Remove screen shake:",
+        "type": "bool"
+    },
+    {
+        "key": "AUTO_PET",
+        "name": "Enable auto PET:",
+        "type": "bool"
+    },
+    {
+        "key": "PET_IN_DG",
+        "name": "Auto pet only in dungeon:",
+        "type": "bool"
+    },
+    {
+        "key": "PET_BUFF_DG",
+        "name": "Use buff only in dungeon:",
+        "type": "bool"
+    },
+    {
+        "key": "PET_SLOT",
+        "name": "PET slot that will be used:",
+        "type": "number",
+        "min": 1,
+        "max": 10,
+        "step": 1
+    },
+    {
+        "key": "AUTO_NOSTRUM",
+        "name": "Auto use Nostrum:",
+        "type": "bool"
+    },
+    {
+        "key": "AUTO_NOSTRUM_ONLY_DG",
+        "name": "Use Nostrum only in dungeon:",
+        "type": "bool"
+    },
+    {
         "key": "AUTO_HP_50_POT",
         "name": "Enable auto Health potion (HP):",
         "type": "bool"
@@ -41,6 +79,11 @@ module.exports = [
     {
         "key": "BUFFS",
         "name": "Enable auto Brooch and Root Beer:",
+        "type": "bool"
+    },
+    {
+        "key": "BROOCH_HEALERS",
+        "name": "Enable auto Brooch with healers:",
         "type": "bool"
     }
 ];

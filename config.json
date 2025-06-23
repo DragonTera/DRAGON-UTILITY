@@ -1,15 +1,21 @@
 {
-    "version": 1.00,
+    "version": 2,
     "data": {
         "DEBUG": false,
-        "AUTO_NOSTRUM": false,
+        "SHAKE_REMOVER": true,
+        "AUTO_PET": true,
+        "PET_IN_DG": true,
+        "PET_BUFF_DG": true,
+        "PET_SLOT": 1,
+        "AUTO_NOSTRUM": true,
         "AUTO_NOSTRUM_ONLY_DG": false,
         "AUTO_HP_50_POT": true,
         "AUTO_HP_50_POT_PERCENT": 20,
         "AUTO_HP_POT": true,
         "AUTO_HP_POT_PERCENT": 40,
         "AUTO_MP_POT": true,
-        "AUTO_MP_POT_PERCENT": 50,
-        "BUFFS": true
+        "AUTO_MP_POT_PERCENT": 40,
+        "BUFFS": true,
+        "BROOCH_HEALERS": false
     }
 }

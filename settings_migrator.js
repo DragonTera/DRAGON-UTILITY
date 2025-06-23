@@ -1,15 +1,21 @@
 const DefaultSettings = 
 {
 	"DEBUG": false,
-    "AUTO_NOSTRUM": false,
+    "SHAKE_REMOVER": true,
+    "AUTO_PET": true,
+    "PET_IN_DG": true,
+    "PET_BUFF_DG": true,
+    "PET_SLOT": 1,
+    "AUTO_NOSTRUM": true,
     "AUTO_NOSTRUM_ONLY_DG": false,
-    "AUTO_HP_50_POT": true,
+    "AUTO_HP_50_POT": false,
     "AUTO_HP_50_POT_PERCENT": 20,
-    "AUTO_HP_POT": true,
+    "AUTO_HP_POT": false,
     "AUTO_HP_POT_PERCENT": 40,
-    "AUTO_MP_POT": true,
-    "AUTO_MP_POT_PERCENT": 50,
-    "BUFFS": true
+    "AUTO_MP_POT": false,
+    "AUTO_MP_POT_PERCENT": 40,
+    "BUFFS": true,
+    "BROOCH_HEALERS": false
 }
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings)
@@ -45,7 +51,10 @@ module.exports = function MigrateSettings(from_ver, to_ver, settings)
 				}
 
 				if(from_ver < to_ver)
-                    console.log('Your settings have been updated to version ' + to_ver + '. You can edit the new config file after the next relog.');
+                {
+                    console.log('<font color=\'#04ACEC\'>DRAGON-UTILITY:</font> Your settings have been updated to version ' + to_ver + '.');
+                    console.log('<font color=\'#04ACEC\'>DRAGON-UTILITY:</font> You can edit the new config file after the next relog.');
+                }
 				
                 break;
 		}
