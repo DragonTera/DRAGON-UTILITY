@@ -51,7 +51,6 @@ module.exports = function utility(mod)
     let lastMoved   = Date.now();
     let job         = null;
     let model       = null;
-    let playerId    = null;    
     let playerLoc   = null;
     let playerW     = null;
 
@@ -123,7 +122,7 @@ module.exports = function utility(mod)
     {
         mod.toServer('C_USE_ITEM', 3, 
         {
-            gameId: playerId,
+            gameId: mod.game.me.gameId,
             id: __item,
             dbid: 0,
             amount: 1,
@@ -139,9 +138,24 @@ module.exports = function utility(mod)
     {
         let __index     = 1000;
         let __taskPet   = null;
+        let __retorno   = false;
         
         if(petId != null)
         {
+            Object.values(mod.game.me.abnormalities).forEach(abnormality => 
+            {
+                if(abnormality.data.name == "Eternal Power" || abnormality.data.name == "Bracing Force" || abnormality.data.name == "Robust Energy" || abnormality.data.name == "Vibrant Energy")
+                {
+                    if(abnormality.remaining > 15000)
+                    {
+                        __retorno = true;
+                        return;
+                    }
+                }
+            });
+
+            if(__retorno == true){return;}
+
             if(mod.settings.PET_BUFF_DG == true && mod.game.me.inDungeon == false){return;}
             else
             {
@@ -164,6 +178,8 @@ module.exports = function utility(mod)
                                 gameId: petId.gameId,
                                 skill: petSkill
                             });
+
+                            setTimeout(function (){if(petCd == false){petSkill = null;}}, 100);;
                         }
                         else
                         {
@@ -213,7 +229,6 @@ module.exports = function utility(mod)
 
     mod.hook('S_LOGIN', mod.majorPatchVersion < 114 ? 14 : 15, (event) => 
     {
-        playerId    = event.gameId;
         model       = event.templateId;
         job         = (model -10101) % 100;
 
@@ -399,7 +414,7 @@ module.exports = function utility(mod)
 
     mod.hook('S_REQUEST_DESPAWN_SERVANT', 1, event => 
     {
-        if(petId.gameId == event.gameId)
+        if(petId != null && petId.gameId == event.gameId)
         {
             petCd    = false;
             petSkill = null;
@@ -409,7 +424,7 @@ module.exports = function utility(mod)
 
     mod.hook('S_REQUEST_SPAWN_SERVANT', 4, event => 
     {
-        if(event.ownerId == playerId)
+        if(event.ownerId == mod.game.me.gameId)
         {
             setTimeout(function (){petId = event}, 100);;
         }
