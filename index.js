@@ -54,13 +54,16 @@ module.exports = function utility(mod)
     let playerId    = null;    
     let playerLoc   = null;
     let playerW     = null;
+
     let clubNostrum = null;
     let taskNostrum = null;
+
     let petList     = null;
     let petId       = null;
     let petCd       = null;
     let petSkill    = null;
     let taskPet     = null;
+
     let skillCd     = [false, false, false, false, false, false, false, false, false, false, false, false, false];
     let itemCd      = [false, false, false, false];
 
@@ -136,41 +139,45 @@ module.exports = function utility(mod)
     {
         let __index     = 1000;
         let __taskPet   = null;
-
+        
         if(petId != null)
         {
-            clearInterval(__taskPet);
-            __taskPet = setInterval(function ()
+            if(mod.settings.PET_BUFF_DG == true && mod.game.me.inDungeon == false){return;}
+            else
             {
-                if(petCd == true || petId == null)
+                clearInterval(__taskPet);
+                __taskPet = setInterval(function ()
                 {
-                    if(petSkill == null && petCd == true && petId != null){petSkill = __index - 1;}
-
-                    clearInterval(__taskPet);
-                    return;
-                }
-                else
-                {
-                    if(petSkill != null)
+                    if(petCd == true || petId == null)
                     {
-                        mod.send("C_START_SERVANT_ACTIVE_SKILL", 2,
-                        {
-                            gameId: petId,
-                            skill: petSkill
-                        });
+                        if(petSkill == null && petCd == true && petId != null){petSkill = __index - 1;}
+
+                        clearInterval(__taskPet);
+                        return;
                     }
                     else
                     {
-                        mod.send("C_START_SERVANT_ACTIVE_SKILL", 2,
+                        if(petSkill != null)
                         {
-                            gameId: petId,
-                            skill: __index++
-                        });
+                            mod.send("C_START_SERVANT_ACTIVE_SKILL", 2,
+                            {
+                                gameId: petId.gameId,
+                                skill: petSkill
+                            });
+                        }
+                        else
+                        {
+                            mod.send("C_START_SERVANT_ACTIVE_SKILL", 2,
+                            {
+                                gameId: petId.gameId,
+                                skill: __index++
+                            });
+                        }
                     }
-                }
-            }, 30);
-            
-            setTimeout(function (){clearInterval(__taskPet);}, 8000);
+                }, 30);
+                
+                setTimeout(function (){clearInterval(__taskPet);}, 8000);
+            }
         }
 
         return;
@@ -182,6 +189,18 @@ module.exports = function utility(mod)
         {
             servantId: petList.servants[mod.settings.PET_SLOT].id,
             uniqueId: Number(petList.servants[mod.settings.PET_SLOT].dbid),
+            unk: 0
+        });
+
+        return;
+    }
+
+    function _removePet()
+    {
+        mod.send("C_REQUEST_SPAWN_SERVANT", 2,
+        {
+            servantId: petId.id,
+            uniqueId: Number(petId.dbid),
             unk: 0
         });
 
@@ -199,9 +218,11 @@ module.exports = function utility(mod)
         job         = (model -10101) % 100;
 
         skillCd     = [false, false, false, false, false, false, false, false, false, false, false, false, false];
+        
         petCd       = false;
         petId       = null;
         petSkill    = null;
+        petList     = null;
 
         setTimeout(function (){mod.command.message('This mod does not work with ping or any ping remover.');}, 10000);
 
@@ -221,15 +242,21 @@ module.exports = function utility(mod)
 	{
 		if(mod.settings.AUTO_PET == true)
         {
-            if(mod.settings.PET_IN_DG)
+            if(mod.settings.PET_SLOT <= petList.servants.length)
             {
-                if(mod.game.me.inDungeon)
+                if(mod.settings.PET_IN_DG == true)
                 {
-                    if(petId == null){_summonPet();}
+                    if(mod.game.me.inDungeon)
+                    {
+                        if(petId == null){_summonPet();}
+                        else if(petId != null && petId.dbid != petList.servants[mod.settings.PET_SLOT].dbid){_summonPet();}
+
+                    }
+                    else if(petId != null){_removePet();}
                 }
-                else if(petId != null){_summonPet();}
+                else if(petId == null){_summonPet();}
+                else if(petId != null && petId.dbid != petList.servants[mod.settings.PET_SLOT].dbid){_summonPet();}
             }
-            else if(petId == null){_summonPet();}
         }
 	});
 
@@ -372,12 +399,20 @@ module.exports = function utility(mod)
 
     mod.hook('S_REQUEST_DESPAWN_SERVANT', 1, event => 
     {
-        if(petId == event.gameId){petId = null;}
+        if(petId.gameId == event.gameId)
+        {
+            petCd    = false;
+            petSkill = null;
+            petId    = null;
+        }
     });
 
     mod.hook('S_REQUEST_SPAWN_SERVANT', 4, event => 
     {
-        if(event.ownerId == playerId){petId = event.gameId;}
+        if(event.ownerId == playerId)
+        {
+            setTimeout(function (){petId = event}, 100);;
+        }
     });
 
     mod.hook('S_REQUEST_SERVANT_INFO_LIST', 4, event => 
@@ -394,7 +429,7 @@ module.exports = function utility(mod)
     });
 
     //--------------------------------------------------------------------------------------------------------------------------------------
-    //  Cooldown skills event
+    //  Player skills event
     //--------------------------------------------------------------------------------------------------------------------------------------
 
     mod.hook('S_START_COOLTIME_SKILL', mod.majorPatchVersion < 114 ? 3 : 4, (event) =>
@@ -409,10 +444,6 @@ module.exports = function utility(mod)
 
         return;
 	});
-
-    //--------------------------------------------------------------------------------------------------------------------------------------
-    //  Use skills event
-    //--------------------------------------------------------------------------------------------------------------------------------------
 
     mod.hook('C_START_SKILL', 7, (event) =>
     {

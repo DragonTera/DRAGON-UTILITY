@@ -7,6 +7,6 @@ Type `/toolbox` or `/8` into chat to switch to the command line, then enter the 
 
 ## Functions
 
-This mode allows you to be afk without disconnecting, removes the drunk effect, screen shakes and automatically skips cutscenes.
+This mode allows you to be afk without disconnecting, use censored words, removes the drunk effect, screen shakes and automatically skips cutscenes.
 
 Automatically uses brooch, root beer, pet, club nostrum, HP and MP potion.
