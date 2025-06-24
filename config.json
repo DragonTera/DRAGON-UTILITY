@@ -1,10 +1,9 @@
 {
-    "version": 2,
+    "version": 2.01,
     "data": {
         "DEBUG": false,
         "SHAKE_REMOVER": true,
         "AUTO_PET": true,
-        "PET_IN_DG": true,
         "PET_BUFF_DG": true,
         "PET_SLOT": 1,
         "AUTO_NOSTRUM": true,
@@ -14,7 +13,7 @@
         "AUTO_HP_POT": true,
         "AUTO_HP_POT_PERCENT": 40,
         "AUTO_MP_POT": true,
-        "AUTO_MP_POT_PERCENT": 50,
+        "AUTO_MP_POT_PERCENT": 40,
         "BUFFS": true,
         "BROOCH_HEALERS": false
     }

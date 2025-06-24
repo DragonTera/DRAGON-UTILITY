@@ -224,18 +224,6 @@ module.exports = function utility(mod)
         return;
     }
 
-    function _removePet()
-    {
-        mod.send("C_REQUEST_SPAWN_SERVANT", 2,
-        {
-            servantId: petId.id,
-            uniqueId: Number(petId.dbid),
-            unk: 0
-        });
-
-        return;
-    }
-    
     //--------------------------------------------------------------------------------------------------------------------------------------
     //  Player event
     //--------------------------------------------------------------------------------------------------------------------------------------
@@ -262,27 +250,16 @@ module.exports = function utility(mod)
 		playerLoc   = event.loc;
 		playerW     = event.w;
 
-        if([0,1,5,6].indexOf(event.type) > -1)
-			lastMoved = Date.now();
+        if([0,1,5,6].indexOf(event.type) > -1){lastMoved = Date.now();}
 	});
 
     mod.hook("S_VISIT_NEW_SECTION", 1, () => 
 	{
         if(mod.settings.AUTO_PET == true)
         {
-            if(mod.settings.PET_SLOT <= petList.servants.length)
+            if(mod.settings.PET_SLOT <= petList.servants.length && mod.game.me.inDungeon == true)
             {
-                if(mod.settings.PET_IN_DG == true)
-                {
-                    if(mod.game.me.inDungeon)
-                    {
-                        if(petId == null){_summonPet();}
-                        else if(petId != null && petId.dbid != petList.servants[_petIndex()].dbid){_summonPet();}
-
-                    }
-                    else if(petId != null){_removePet();}
-                }
-                else if(petId == null){_summonPet();}
+                if(petId == null){_summonPet();}
                 else if(petId != null && petId.dbid != petList.servants[_petIndex()].dbid){_summonPet();}
             }
         }
@@ -299,7 +276,8 @@ module.exports = function utility(mod)
                 _useItens(ITEMS[HP_POTION_50][__i]);
             }
         }
-        else if(itemCd[HP_POTION] == false && mod.settings.AUTO_HP_POT == true && ((Number(event.hp) / Number(event.maxHp)) * 100) < mod.settings.AUTO_HP_POT_PERCENT)
+        
+        if(itemCd[HP_POTION] == false && mod.settings.AUTO_HP_POT == true && ((Number(event.hp) / Number(event.maxHp)) * 100) < mod.settings.AUTO_HP_POT_PERCENT)
         {
             for(let __i = 0; __i < ITEMS[HP_POTION].length; __i++)
             {
@@ -326,11 +304,8 @@ module.exports = function utility(mod)
 
     mod.hook('S_PLAY_MOVIE', 1, (event) =>
     {
-        if(mod.settings.AUTO_CUTSCENE)
-        {
-            mod.send('C_END_MOVIE', 1, Object.assign({unk: true}, event));
-            return false;
-        }
+        mod.send('C_END_MOVIE', 1, Object.assign({unk: true}, event));
+        return false;
     });
 
     mod.game.on('enter_game', () => 

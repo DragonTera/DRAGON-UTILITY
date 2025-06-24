@@ -10,11 +10,6 @@ module.exports = [
         "type": "bool"
     },
     {
-        "key": "PET_IN_DG",
-        "name": "Auto pet only in dungeon:",
-        "type": "bool"
-    },
-    {
         "key": "PET_BUFF_DG",
         "name": "Use buff only in dungeon:",
         "type": "bool"

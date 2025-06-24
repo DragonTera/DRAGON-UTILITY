@@ -3,7 +3,6 @@ const DefaultSettings =
 	"DEBUG": false,
     "SHAKE_REMOVER": true,
     "AUTO_PET": true,
-    "PET_IN_DG": true,
     "PET_BUFF_DG": true,
     "PET_SLOT": 1,
     "AUTO_NOSTRUM": true,
