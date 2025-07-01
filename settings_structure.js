@@ -23,13 +23,13 @@ module.exports = [
         "step": 1
     },
     {
-        "key": "AUTO_NOSTRUM",
-        "name": "Auto use Nostrum:",
+        "key": "AUTO_MULT_NOSTRUM_POWER",
+        "name": "Auto use Mult-Nostrum (power):",
         "type": "bool"
     },
     {
-        "key": "AUTO_NOSTRUM_ONLY_DG",
-        "name": "Use Nostrum only in dungeon:",
+        "key": "AUTO_MULT_NOSTRUM_CRIT",
+        "name": "Auto use Mult-Nostrum (crit):",
         "type": "bool"
     },
     {
