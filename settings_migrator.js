@@ -1,6 +1,5 @@
 const DefaultSettings = 
 {
-	"DEBUG": false,
     "SHAKE_REMOVER": true,
     "AUTO_PET": true,
     "PET_BUFF_DG": false,

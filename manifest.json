@@ -4,10 +4,10 @@
     "defs/C_START_SERVANT_ACTIVE_SKILL.2.def": "74cf4aecb282600c5b11dd620d79728fa481ca5ddad58eb261d89135ca984b5b",
     "defs/S_START_COOLTIME_SERVANT_SKILL.1.def": "9531917dceb13a00862d2b07e6ff03865b8ba8888cecbdc7c8a5a7707da931ed",
     "defs/S_UPDATE_SERVANT_INFO.1.def": "355dac2b462cde6b2c00e6712ffdef4807013605d7b4e3d6b33fd12652f7ccd2",
-    "index.js": "f2393c49277e6f56d20d1fa39fa3a87bba573e391f777745b90e8f93b53b4a78",
-    "module.json": "c24a78894ce112567583db1c46c5d7e647299a39a8490a42c6922ef876864d33",
+    "index.js": "3341c9016b2c5fc9e16889b0428d0a78a08857ae14833ce7648c4dfb4d96c88e",
+    "module.json": "b342d436a7c435666bb5774945f2ce0ed0051fcecae1f478bcd295648b184630",
     "README.md": "37a950b40c8ea1054f0973bb7f7cc8d63d841fe089a066442f47040593834bfc",
-    "settings_migrator.js": "d1fa1d55853ad62eaa93ceb937531e5dae355007002dd542f915fc006f3fa388",
+    "settings_migrator.js": "84646be62a1dba125bbe3d9dd355f8e0918ccc0057110ff3a3a4fa687d71cefe",
     "settings_structure.js": "e1b8f70af7cbefc01da351341baf7bbafc092b2e6372063953033ec22c08f932"
   }
 }

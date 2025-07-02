@@ -3,6 +3,8 @@
 const SettingsUI            = require('tera-mod-ui').Settings;
 const path                  = require("path");
 
+const DEBUG                 = false;
+
 const TAG                   = "<font color='#04ACEC'>DRAGON-UTILITY:</font> ";
 
 const CLUB_POWER_ID         = [602626];
@@ -287,7 +289,7 @@ module.exports = function utility(mod)
 
     mod.hook('S_PLAYER_STAT_UPDATE', mod.majorPatchVersion < 105 ? 14 : (mod.majorPatchVersion < 108 ? 15 : 17), {order: -Infinity}, event =>
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'S_PLAYER_STAT_UPDATE');}
+        if(DEBUG == true){console.log(TAG + 'S_PLAYER_STAT_UPDATE');}
 
         if(itemCd[HP_POTION_50] == false && mod.settings.AUTO_HP_50_POT == true && ((Number(event.hp) / Number(event.maxHp)) * 100) < mod.settings.AUTO_HP_50_POT_PERCENT)
         {
@@ -369,13 +371,13 @@ module.exports = function utility(mod)
 
     mod.hook('S_PREMIUM_SLOT_DATALIST', 2, {order: -Infinity}, event =>
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'S_PREMIUM_SLOT_DATALIST: ' + event.id);}
+        if(DEBUG == true){console.log(TAG + 'S_PREMIUM_SLOT_DATALIST: ' + event.id);}
         
         for(let __i = 0; __i < event.sets.length; __i++)
         {
             for(let __j = 0; __j < event.sets[__i].inventory.length; __j++)
             {
-                if(mod.settings.DEBUG){console.log(TAG + 'Item slot: ' + event.sets[__i].inventory[__j].slot + 'Item id: ' + event.sets[__i].inventory[__j].id);}
+                if(DEBUG == true){console.log(TAG + 'Item slot: ' + event.sets[__i].inventory[__j].slot + 'Item id: ' + event.sets[__i].inventory[__j].id);}
 
                 if(CLUB_POWER_ID.includes(event.sets[__i].inventory[__j].id) == true)
                 {
@@ -406,7 +408,7 @@ module.exports = function utility(mod)
 
     mod.hook('S_START_COOLTIME_ITEM', 1, {order: -Infinity}, event => 
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'S_START_COOLTIME_ITEM: ' + event.item + ' | ' + event.cooldown);}
+        if(DEBUG == true){console.log(TAG + 'S_START_COOLTIME_ITEM: ' + event.item + ' | ' + event.cooldown);}
         
         for(let __i = 0; __i < ITEMS.length; __i++)
         {
@@ -424,7 +426,7 @@ module.exports = function utility(mod)
 
     mod.hook('C_USE_ITEM', 3, {order: -Infinity}, event => 
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'C_USE_ITEM: ' + event.id);}
+        if(DEBUG == true){console.log(TAG + 'C_USE_ITEM: ' + event.id);}
        return;
     }); 
 
@@ -434,7 +436,7 @@ module.exports = function utility(mod)
 
     mod.hook('S_UPDATE_SERVANT_INFO', 1, {order: -Infinity}, event => 
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'S_UPDATE_SERVANT_INFO: ' + event.id + ' | ' + event.energy);}
+        if(DEBUG == true){console.log(TAG + 'S_UPDATE_SERVANT_INFO: ' + event.id + ' | ' + event.energy);}
 
         if(event.energy <= 270 && mod.settings.AUTO_PET == true && petId != null){_useItens(PET_FOOD_ID[0]);}
 
@@ -472,7 +474,7 @@ module.exports = function utility(mod)
 
     mod.hook('S_START_COOLTIME_SERVANT_SKILL', 1, {order: -Infinity}, event => 
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'S_START_COOLTIME_SERVANT_SKILL: ' + event.cooltime);}
+        if(DEBUG == true){console.log(TAG + 'S_START_COOLTIME_SERVANT_SKILL: ' + event.cooltime);}
         
         petCd = true;
         setTimeout(function (){petCd = false;}, event.cooltime);
@@ -486,7 +488,8 @@ module.exports = function utility(mod)
 
     mod.hook('S_START_COOLTIME_SKILL', mod.majorPatchVersion < 114 ? 3 : 4, {order: -Infinity}, event =>
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'S_START_COOLTIME_SKILL: ' + event.skill.id + ' / ' + event.cooldown);}
+        if(DEBUG == true){console.log(TAG + 'S_START_COOLTIME_SKILL: ' + event.skill.id + ' / ' + event.cooldown);}
+        if(job < 0 || job == null){return;}
 
         if(SKILLS[job].includes(event.skill.id) == true)
         {
@@ -499,7 +502,8 @@ module.exports = function utility(mod)
 
     mod.hook('C_START_SKILL', 7, {order: -Infinity}, event =>
     {
-        if(mod.settings.DEBUG){console.log(TAG + 'C_START_SKILL: ' + event.skill.id);}
+        if(DEBUG == true){console.log(TAG + 'C_START_SKILL: ' + event.skill.id);}
+        if(job < 0 || job == null){return;}
 
         if(skillCd[job] == false && mod.settings.BUFFS == true)
         {

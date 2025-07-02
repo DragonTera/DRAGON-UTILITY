@@ -1,7 +1,6 @@
 {
-    "version": 2.10,
+    "version": 2.1,
     "data": {
-        "DEBUG": false,
         "SHAKE_REMOVER": true,
         "AUTO_PET": true,
         "PET_BUFF_DG": false,
