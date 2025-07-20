@@ -11,7 +11,7 @@ const CLUB_POWER_ID         = [602626];
 const CLUB_CRIT_ID          = [602627];
 const BUFF_INVINCIBILITY    = [1134, 6007];
 
-const BROSCH_ID             = [51029, 51030];
+const BROSCH_ID             = [51029, 51030, 88878, 88880];
 const ROOTBEAR_ID           = [80081];
 
 const HP_POTION_50_ID       = [114, 116];
